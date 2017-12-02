@@ -122,13 +122,13 @@ function makeVerification(tx) {
 
     // Create Public from Private Keys.
     var Public_Key_Owner = tx.Public_Key_Owner;
-    var Public_Key_Verifier = tx.SHA256(tx.Private_Key_Verifier);
+    var Public_Key_Verifier = SHA256(tx.Private_Key_Verifier);
     var description  = tx.description;
     var EntityRegistry;
     var Entity_Owner;
     var Entity_Verifier;
 
-    getParticipantRegistry('org.acme.pehchain.Entity')
+    return getParticipantRegistry('org.acme.pehchain.Entity')
       		.then(function (Registry) {
             EntityRegistry = Registry;
       			return Registry.get(Public_Key_Owner);
@@ -141,10 +141,12 @@ function makeVerification(tx) {
         	})
       		.then(function (entity) {
             Entity_Verifier = entity;
-  			  });
+  			  })
 
-    // Get the asset registry for the asset.
-    return getAssetRegistry('org.acme.pehchain.lenden')
+          .then(function () {
+            // Get the asset registry for the asset.
+            return getAssetRegistry('org.acme.pehchain.lenden')
+          })
           .then(function (assetRegistry) {
 
               // Update the asset in the asset registry.
@@ -154,15 +156,15 @@ function makeVerification(tx) {
             new_lenden.owner = Entity_Owner;
             new_lenden.verifier = Entity_Verifier;
             new_lenden.timestamp = tx.timestamp;
-            return assetRegistry.add(reciever_asset);
-
+            return assetRegistry.add(new_lenden);
+          })
+          .then(function () {
             // Emit an event for the modified asset.
             var event = getFactory().newEvent('org.acme.pehchain', 'TransactionEvent');
             event.owner = Entity_Owner;
             event.verifier = Entity_Verifier;
             event.event_timestamp = tx.timestamp;
             emit(event);
-
         });
 
 }
