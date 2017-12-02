@@ -1,0 +1,9 @@
+asset Lakshmi identified by assetId {
+  o String assetId
+  o String description optional
+  --> LakshmiType assettype
+  o Issuedby issuer
+  --> Entity owner
+  o Double value
+
+}
