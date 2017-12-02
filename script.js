@@ -12,8 +12,6 @@
  * limitations under the License.
  */
 
-
-
  function SHA256(s){
      var chrsz   = 8;
      var hexcase = 0;
@@ -113,6 +111,7 @@
      return binb2hex(core_sha256(str2binb(s), s.length * chrsz));
  }
 
+
  /**
   * makeVerification transaction processor function.
   * @param {org.acme.pehchain.makeVerification} tx The sample transaction instance.
@@ -121,12 +120,10 @@
 
 function makeVerification(tx) {
 
-
     // Create Public from Private Keys.
     var Public_Key_Owner = tx.Public_Key_Owner;
-    var Public_Key_Verifier = tx.SHA256(Private_Key_Verifier);
-    var description = '';
-    if(tx.description != undefined) description = tx.description;
+    var Public_Key_Verifier = tx.SHA256(tx.Private_Key_Verifier);
+    var description  = tx.description;
     var EntityRegistry;
     var Entity_Owner;
     var Entity_Verifier;
@@ -163,7 +160,7 @@ function makeVerification(tx) {
             var event = getFactory().newEvent('org.acme.pehchain', 'TransactionEvent');
             event.owner = Entity_Owner;
             event.verifier = Entity_Verifier;
-            event.timestamp = tx.timestamp;
+            event.event_timestamp = tx.timestamp;
             emit(event);
 
         });

@@ -26,5 +26,5 @@ transaction makeVerification {
 event TransactionEvent {
   --> Entity owner
   --> Entity verifier
-  o DateTime timestamp
+  o DateTime event_timestamp
 }
