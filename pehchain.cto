@@ -18,7 +18,13 @@ participant Entity identified by Public_Key {
 }
 
 transaction makeVerification {
-  o String Private_Key_Owner
+  o String Public_Key_Owner
   o String Private_Key_Verifier
   o String description optional
+}
+
+event TransactionEvent {
+  --> Entity owner
+  --> Entity verifier
+  o DateTime timestamp
 }
