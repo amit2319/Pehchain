@@ -1,0 +1,17 @@
+/**
+ * Queries for PehChain API.
+ */
+
+query selectLendenbyMerchant {
+  description: "Select all Lenden by a Merchant"
+  statement:
+      SELECT org.acme.pehchain.lenden
+  		WHERE (owner==_$owner)
+}
+
+query selectLendenbyVerifier {
+  description: "Select all Lenden by a Verifier"
+  statement:
+      SELECT org.acme.pehchain.lenden
+  		WHERE (verifier==_$verifier)
+}
