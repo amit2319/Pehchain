@@ -1,9 +1,24 @@
-asset Lakshmi identified by assetId {
+
+namespace org.acme.pehchain
+
+
+asset lenden identified by assetId {
   o String assetId
   o String description optional
-  --> LakshmiType assettype
-  o Issuedby issuer
   --> Entity owner
-  o Double value
+  --> Entity verifier
+  o DateTime timestamp
+}
 
+participant Entity identified by Public_Key {
+  o String Public_Key
+  o String IPFS_Address
+  o String IPFS_Encrypted_Key
+
+}
+
+transaction makeVerification {
+  o String Private_Key_Owner
+  o String Private_Key_Verifier
+  o String description optional
 }
