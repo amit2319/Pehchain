@@ -13,11 +13,6 @@
  */
 
 
-/**
- * makeVerification transaction processor function.
- * @param {org.acme.pehchain.makeVerification} tx The sample transaction instance.
- * @transaction
- */
 
  function SHA256(s){
      var chrsz   = 8;
@@ -117,6 +112,12 @@
      s = Utf8Encode(s);
      return binb2hex(core_sha256(str2binb(s), s.length * chrsz));
  }
+
+ /**
+  * makeVerification transaction processor function.
+  * @param {org.acme.pehchain.makeVerification} tx The sample transaction instance.
+  * @transaction
+  */
 
 function makeVerification(tx) {
 
