@@ -20,9 +20,10 @@ through distributed ledgers, smart contracts, with public key infrastructure,
 consensus and privacy features that can help to standardize identity management
 processes, reducing cost, time and complexity.
 
-<img src="https://github.com/amit2319/Pehchain/blob/master/screens/stack.PNG" />
-· 
-**Technical Specifications**
+<img src="https://github.com/amit2319/Pehchain/blob/master/screens/stack.png" />
+
+
+**Technical Specifications -**
 
 Framework used - HyperLedger Fabric, Composer and PlayGround
 
